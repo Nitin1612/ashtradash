@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -15,7 +15,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { Avatar, Badge, badgeClasses, IconButton, styled } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  badgeClasses,
+  IconButton,
+  Slider,
+  styled,
+} from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -40,6 +47,26 @@ const CartBadge = styled(Badge)`
   }
 `;
 
+function CustomLabels() {
+  return (
+    <BarChart
+      className="graphicalRep"
+      series={[
+        { data: [4, 2, 5, 4, 1], stack: "A", label: "Series A1" },
+        { data: [2, 8, 1, 3, 1], stack: "A", label: "Series A2" },
+        { data: [14, 6, 5, 8, 9], label: "Series B1" },
+      ]}
+      barLabel={(item, context) => {
+        if ((item.value ?? 0) > 10) {
+          return "High";
+        }
+        return context.bar.height < 60 ? null : item.value?.toString();
+      }}
+      height={350}
+    />
+  );
+}
+
 function Dashboard() {
   const [age, setAge] = React.useState(10);
 
@@ -60,23 +87,46 @@ function Dashboard() {
     { icon: <LogoutIcon />, name: "Logout" },
   ];
 
+  const marks = [
+    {
+      value: 100,
+      label: "100%",
+    },
+  ];
+
+  function valuetext(value) {
+    return `${value}%`;
+  }
+
+  const [close, setClose] = React.useState(true);
   const sideMenuTabs = (name, icon) => {
     return (
-      <>
-        <div className="menuItem">
-          <div className="menuIcon">{icon}</div>
-          <div className="menuName">{name}</div>
+      <div className="hover">
+        <div
+          className="menuItem"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <span className="menuIcon">{icon}</span>
+          {close && <div className="menuName">{name}</div>}
         </div>
-      </>
+      </div>
     );
   };
-
   return (
     <div className="rootLayout">
-      <div className="sideBar">
-        <div style={{ display: "flex", justifyContent: "end", border: "2px" }}>
-          <CloseIcon />
-        </div>
+      <div className={`${close ? "sideBar" : "sideBarClose"}`} onClick={()=>setClose(!close)}>
+        {close && (
+          <div
+            className="closeIcon"
+            onClick={() => [console.log(close), setClose(!close)]}
+          >
+            <CloseIcon className="icon" />
+          </div>
+        )}
         <div className="logo">
           <img
             src="http://asthra.manager.s3-website.ap-south-1.amazonaws.com/static/media/logo.44fb18b21411419307de.png"
@@ -207,7 +257,10 @@ function Dashboard() {
                     {" "}
                     Analytics
                   </div>
-                  <div style={{ width: "80%" }} className="restheaders">
+                  <div
+                    style={{ width: "80%", zoom: "90%" }}
+                    className="restheaders"
+                  >
                     <span className="label">
                       <span
                         className="dot"
@@ -230,23 +283,7 @@ function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <BarChart
-                  series={[
-                    { data: [4, 2, 5, 4, 1], stack: "A", label: "Series A1" },
-                    { data: [2, 8, 1, 3, 1], stack: "A", label: "Series A2" },
-                    { data: [14, 6, 5, 8, 9], label: "Series B1" },
-                  ]}
-                  barLabel={(item, context) => {
-                    if ((item.value ?? 0) > 10) {
-                      return "High";
-                    }
-                    return context.bar.height < 60
-                      ? null
-                      : item.value?.toString();
-                  }}
-                  height={350}
-                  className="graphicalRep"
-                />
+                {CustomLabels()}
               </div>
             </div>
             <div className="rightbox">
@@ -288,9 +325,50 @@ function Dashboard() {
                 </div>
               </div>
               <div className="bottom">
-                <div className="creditCard">
-                    <span>Maximum Credit</span>
-                    
+                <div class="credit-card">
+                  <div class="credit-card-content">
+                    <div class="max-credit">
+                      <p>Maximum Credit</p>
+                      <h2>₹30,000</h2>
+                    </div>
+                    <div class="amounts">
+                      <div class="used-amount">
+                        <p>Used Amount</p>
+                        <h3>₹20,000</h3>
+                      </div>
+                      <div class="balance-credits">
+                        <p>Balance credits</p>
+                        <h3>₹10,000</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="dueamount">
+                  <PendingActionsIcon
+                    style={{
+                      backgroundColor: "black",
+                      color: "white",
+                      borderRadius: "50%",
+                    }}
+                  />
+                  <span style={{ fontWeight: "bolder" }}>Due Amount</span>
+                  <span style={{ fontSize: "larger", fontWeight: "bolder" }}>
+                    $40,000
+                  </span>
+                </div>
+                <div className="totalamount" style={{ padding: "10px" }}>
+                  <span style={{ fontSize: "16.77px" }}>Total Amount</span>
+                  <span style={{ fontSize: "36.92px" }}>100000</span>
+
+                  <Slider
+                    aria-label="Always visible"
+                    defaultValue={80}
+                    getAriaValueText={valuetext}
+                    step={10}
+                    marks={marks}
+                    valueLabelDisplay="on"
+                    style={{ color: "#21A945" }}
+                  />
                 </div>
               </div>
             </div>
