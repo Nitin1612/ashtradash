@@ -19,6 +19,7 @@ import {
   Avatar,
   Badge,
   badgeClasses,
+  Box,
   IconButton,
   Slider,
   styled,
@@ -28,7 +29,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { BarChart } from "@mui/icons-material";
+import { BarChart } from '@mui/x-charts/BarChart';
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -39,6 +40,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import PendingActionsIcon from "@mui/icons-material/PendingActions";
 import MultipleStopIcon from "@mui/icons-material/MultipleStop";
+import StackOrderDemo from "./CustomGraph";
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
@@ -49,21 +51,7 @@ const CartBadge = styled(Badge)`
 
 function CustomLabels() {
   return (
-    <BarChart
-      className="graphicalRep"
-      series={[
-        { data: [4, 2, 5, 4, 1], stack: "A", label: "Series A1" },
-        { data: [2, 8, 1, 3, 1], stack: "A", label: "Series A2" },
-        { data: [14, 6, 5, 8, 9], label: "Series B1" },
-      ]}
-      barLabel={(item, context) => {
-        if ((item.value ?? 0) > 10) {
-          return "High";
-        }
-        return context.bar.height < 60 ? null : item.value?.toString();
-      }}
-      height={350}
-    />
+    <StackOrderDemo />
   );
 }
 
@@ -118,7 +106,10 @@ function Dashboard() {
   };
   return (
     <div className="rootLayout">
-      <div className={`${close ? "sideBar" : "sideBarClose"}`} onClick={()=>setClose(!close)}>
+      <div
+        className={`${close ? "sideBar" : "sideBarClose"}`}
+        onClick={() => setClose(!close)}
+      >
         {close && (
           <div
             className="closeIcon"
@@ -150,8 +141,8 @@ function Dashboard() {
             <div
               style={{
                 display: "flex",
-                width: "45%",
-                justifyContent: "space-around",
+                width: "100%",
+                justifyContent: "end",
                 alignItems: "center",
               }}
             >
@@ -162,8 +153,8 @@ function Dashboard() {
                 onChange={handleChange}
                 label="GPO"
               >
-                <MenuItem value={10}>GPO</MenuItem>
-                <MenuItem value={20}>Non GPO</MenuItem>
+                <MenuItem value={10}><span>GPO</span></MenuItem>
+                <MenuItem value={20}><span>Non GPO</span></MenuItem>
               </Select>
               <Select
                 className="hosdrop"
@@ -276,7 +267,7 @@ function Dashboard() {
                       Total Order Received
                     </span>
                     <div className="sortBy">
-                      Sort by Date
+                      Sort by Month
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker />
                       </LocalizationProvider>
@@ -300,43 +291,43 @@ function Dashboard() {
                 <div className="progress">
                   <div className="statusitems">
                     <LocalHospitalIcon className="goldIcon" />
-                    <span>Order Placed</span>
+                    <span className="title">Order Placed</span>
                     <span className="bold">48</span>
-                    <ArrowForwardIosIcon fontSize="small" />
+                    <ArrowForwardIosIcon fontSize="small" className="icon" />
                   </div>
                   <div className="statusitems">
                     <FactCheckIcon className="goldIcon" />
-                    <span>Approved</span>
+                    <span className="title">Approved</span>
                     <span className="bold">12</span>
-                    <ArrowForwardIosIcon fontSize="small" />
+                    <ArrowForwardIosIcon fontSize="small" className="icon" />
                   </div>
                   <div className="statusitems">
                     <LocalShippingIcon className="goldIcon" />
-                    <span>Shipped</span>
+                    <span className="title">Shipped</span>
                     <span className="bold">28</span>
-                    <ArrowForwardIosIcon fontSize="small" />
+                    <ArrowForwardIosIcon fontSize="small" className="icon" />
                   </div>
                   <div className="statusitems">
                     <CreditCardIcon className="goldIcon" />
-                    <span>Delivered</span>
+                    <span className="title">Delivered</span>
                     <span className="bold">8</span>
-                    <ArrowForwardIosIcon fontSize="small" />
+                    <ArrowForwardIosIcon fontSize="small" className="icon" />
                   </div>
                 </div>
               </div>
               <div className="bottom">
-                <div class="credit-card">
-                  <div class="credit-card-content">
-                    <div class="max-credit">
+                <div className="credit-card">
+                  <div className="credit-card-content">
+                    <div className="max-credit">
                       <p>Maximum Credit</p>
                       <h2>₹30,000</h2>
                     </div>
-                    <div class="amounts">
-                      <div class="used-amount">
+                    <div className="amounts">
+                      <div className="used-amount">
                         <p>Used Amount</p>
                         <h3>₹20,000</h3>
                       </div>
-                      <div class="balance-credits">
+                      <div className="balance-credits">
                         <p>Balance credits</p>
                         <h3>₹10,000</h3>
                       </div>
@@ -351,14 +342,16 @@ function Dashboard() {
                       borderRadius: "50%",
                     }}
                   />
-                  <span style={{ fontWeight: "bolder" }}>Due Amount</span>
+                  <span style={{ fontWeight: "400" }}>Due Amount</span>
                   <span style={{ fontSize: "larger", fontWeight: "bolder" }}>
-                    $40,000
+                    ₹40,000
                   </span>
                 </div>
                 <div className="totalamount" style={{ padding: "10px" }}>
                   <span style={{ fontSize: "16.77px" }}>Total Amount</span>
-                  <span style={{ fontSize: "36.92px" }}>100000</span>
+                  <span style={{ fontSize: "36.92px", fontWeight: "800" }}>
+                    1,00,000
+                  </span>
 
                   <Slider
                     aria-label="Always visible"
