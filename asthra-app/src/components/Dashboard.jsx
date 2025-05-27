@@ -11,6 +11,7 @@ import StoreIcon from "@mui/icons-material/Store";
 import LogoutIcon from "@mui/icons-material/Logout";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import SearchIcon from "@mui/icons-material/Search";
@@ -20,7 +21,17 @@ import {
   Badge,
   badgeClasses,
   Box,
+  Button,
+  Divider,
+  FormControl,
   IconButton,
+  InputAdornment,
+  InputBase,
+  InputLabel,
+  ListItemIcon,
+  Menu,
+  NativeSelect,
+  OutlinedInput,
   Slider,
   styled,
 } from "@mui/material";
@@ -29,7 +40,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { BarChart } from '@mui/x-charts/BarChart';
+import { BarChart } from "@mui/x-charts/BarChart";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -50,17 +61,15 @@ const CartBadge = styled(Badge)`
 `;
 
 function CustomLabels() {
-  return (
-    <StackOrderDemo />
-  );
+  return <StackOrderDemo />;
 }
 
 function Dashboard() {
-  const [age, setAge] = React.useState(10);
+  // const [age, setAge] = React.useState(10);
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   const menuItems = [
     { icon: <HomeIcon />, name: "Dashboard" },
@@ -87,11 +96,16 @@ function Dashboard() {
   }
 
   const [close, setClose] = React.useState(true);
+  //   const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  //   null
+  //   },
+  // }));
+
   const sideMenuTabs = (name, icon) => {
     return (
       <div className="hover">
         <div
-          className="menuItem"
+          className={`menuItem ${!close && "close"}`}
           style={{
             display: "flex",
             alignItems: "center",
@@ -99,10 +113,20 @@ function Dashboard() {
           }}
         >
           <span className="menuIcon">{icon}</span>
-          {close && <div className="menuName">{name}</div>}
+          {close && <span className="menuName">{name}</span>}
         </div>
       </div>
     );
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorE2, setAnchorE2] = React.useState(null);
+  const [actMenu, setActMenu] = React.useState(null);
+  const openGPO = Boolean(anchorEl);
+  const openHOS = Boolean(anchorE2);
+  const openACT = Boolean(actMenu);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
   return (
     <div className="rootLayout">
@@ -146,39 +170,262 @@ function Dashboard() {
                 alignItems: "center",
               }}
             >
-              <Select
-                inputProps={{ "aria-label": "Without label" }}
-                className="gpodrop"
-                value={age}
-                onChange={handleChange}
-                label="GPO"
-              >
-                <MenuItem value={10}><span>GPO</span></MenuItem>
-                <MenuItem value={20}><span>Non GPO</span></MenuItem>
-              </Select>
-              <Select
-                className="hosdrop"
-                value={age}
-                onChange={handleChange}
-                inputProps={{ "aria-label": "Without label" }}
-                startAdornment={<SearchIcon />}
-                label="Kaveri Hospital"
-              >
-                <MenuItem value={10}>Kaveri Hospital</MenuItem>
-              </Select>
+              <>
+                <div className="gpowrapper">
+                  <Button
+                    className="gpodrop"
+                    onClick={handleClick}
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 600,
+                      marginRight: "10px",
+                    }}
+                  >
+                    GPO
+                    <KeyboardArrowDownIcon
+                      fontSize="small"
+                      style={{ position: "absolute", right: 10 }}
+                    />
+                  </Button>
+                  <Menu
+                    id="gpo-positioned-menu"
+                    aria-labelledby="gpo-positioned-button"
+                    anchorEl={anchorEl}
+                    open={openGPO}
+                    onClose={() => setAnchorEl(null)}
+                    // anchorOrigin={{
+                    //   vertical: "top",
+                    //   horizontal: "left",
+                    // }}
+                    // transformOrigin={{
+                    //   vertical: "top",
+                    //   horizontal: "left",
+                    // }}
+                  >
+                    <div style={{ backgroundColor: "black", color: "white" }}>
+                      <MenuItem
+                        className="gposelect"
+                        style={{
+                          fontFamily: "poppins",
+                          fontWeight: 400,
+                          fontSize: "13px",
+                        }}
+                        onClick={() => setAnchorEl(null)}
+                      >
+                        GPO
+                      </MenuItem>
+                      <MenuItem
+                        className="gposelect"
+                        style={{
+                          fontFamily: "poppins",
+                          fontWeight: 400,
+                          fontSize: "13px",
+                        }}
+                        onClick={() => setAnchorEl(null)}
+                      >
+                        Non GPO
+                      </MenuItem>
+                    </div>
+                  </Menu>
+                </div>
+              </>
+
+              <>
+                <div className="hoswrapper">
+                  <Button
+                    className="hosdrop"
+                    onClick={(e) => setAnchorE2(e.currentTarget)}
+                    startIcon={<SearchIcon />}
+                  >
+                    Kaveri Hospital
+                    <KeyboardArrowDownIcon
+                      fontSize="small"
+                      style={{ position: "absolute", right: 10 }}
+                    />
+                  </Button>
+                  <Menu
+                    id="hos-positioned-menu"
+                    aria-labelledby="hos-positioned-button"
+                    anchorEl={anchorE2}
+                    open={openHOS}
+                    onClose={() => setAnchorE2(null)}
+                    style={{ padding: "0px", margin: "0px" }}
+                    // anchorOrigin={{
+                    //   vertical: "top",
+                    //   horizontal: "left",
+                    // }}
+                    // transformOrigin={{
+                    //   vertical: "top",
+                    //   horizontal: "left",
+                    // }}
+                  >
+                    <div
+                      style={{
+                        backgroundColor: "white",
+                        color: "black",
+                        width: "210px",
+                      }}
+                    >
+                      <MenuItem
+                        style={{
+                          fontFamily: "poppins",
+                          fontWeight: 400,
+                          fontSize: "15px",
+                          margin: "0px",
+                          paddingRight: "5px",
+                          paddingLeft: "5px",
+                        }}
+                        onClick={() => setAnchorE2(null)}
+                      >
+                        <FormControl fullWidth>
+                          <OutlinedInput
+                            style={{
+                              width: "100%",
+                              height: "30px",
+                              borderRadius: "5%",
+                              marginRight: "10px",
+                              paddingRight: "0px",
+                            }}
+                            placeholder="Search"
+                            startAdornment={
+                              <InputAdornment position="start">
+                                <SearchIcon />
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
+                      </MenuItem>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          marginRight: "5px",
+                          marginLeft: "5px",
+                          marginBottom: "15px",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        <MenuItem
+                          style={{
+                            fontFamily: "poppins",
+                            fontWeight: 400,
+                            fontSize: "13px",
+                            width: "100%",
+                            margin: "0px",
+                            paddingRight: "5px",
+                            paddingLeft: "5px",
+                          }}
+                          onClick={() => setAnchorE2(null)}
+                        >
+                          <div
+                            style={{
+                              justifyContent: "start",
+                              alignItems: "center",
+                              display: "flex",
+                              marginRight: "10px",
+                            }}
+                          >
+                            <HomeIcon />
+                          </div>
+                          Non GPO
+                        </MenuItem>
+                        <MenuItem
+                          style={{
+                            fontFamily: "poppins",
+                            fontWeight: 400,
+                            fontSize: "13px",
+                            width: "100%",
+                            margin: "0px",
+                            paddingRight: "5px",
+                            paddingLeft: "5px",
+                          }}
+                          onClick={() => setAnchorE2(null)}
+                        >
+                          <div
+                            style={{
+                              justifyContent: "start",
+                              alignItems: "center",
+                              display: "flex",
+                              marginRight: "10px",
+                            }}
+                          >
+                            <HomeIcon />
+                          </div>
+                          Non GPO
+                        </MenuItem>
+                        <MenuItem
+                          style={{
+                            fontFamily: "poppins",
+                            fontWeight: 400,
+                            fontSize: "13px",
+                            margin: "0px",
+                            paddingRight: "5px",
+                            paddingLeft: "5px",
+                            width: "100%",
+                          }}
+                          onClick={() => setAnchorE2(null)}
+                        >
+                          <div
+                            style={{
+                              justifyContent: "start",
+                              alignItems: "center",
+                              display: "flex",
+                              marginRight: "10px",
+                            }}
+                          >
+                            <HomeIcon />
+                          </div>
+                          Non GPO
+                        </MenuItem>
+                      </div>
+                    </div>
+                  </Menu>
+                </div>
+              </>
 
               <IconButton className="notIcon">
                 <NotificationsIcon />
                 <CartBadge
                   badgeContent={2}
-                  color="primary"
+                  color="success"
                   overlap="circular"
                 />
               </IconButton>
 
-              <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+              <Avatar
+                sx={{ bgcolor: deepOrange[500] }}
+                onClick={(e) => setActMenu(e.currentTarget)}
+              >
+                N
+              </Avatar>
             </div>
           </div>
+          <Menu
+            anchorEl={actMenu}
+            open={openACT}
+            onClose={() => setActMenu(null)}
+            onClick={() => setActMenu(null)}
+            style={{ display: "flex", width: "auto",borderRadius:'15px' }}
+          >
+            <div style={{ backgroundColor: "white",padding:'10px'}}>
+              <MenuItem onClick={() => setActMenu(null)} style={{fontFamily:'poppins',fontWeight:'400',fontSize:'15px'}}>
+                <ListItemIcon>
+                  <HomeIcon fontSize="small" />
+                </ListItemIcon>
+                Kaveri Hospital
+              </MenuItem>
+              <Divider />
+              <MenuItem onClick={() => setActMenu(null)} style={{fontFamily:'poppins',fontWeight:'400',fontSize:'15px'}}>
+                <ListItemIcon>
+                  <LogoutIcon fontSize="small" />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </div>
+          </Menu>
         </>
         <>
           {/* analytics */}
@@ -202,7 +449,15 @@ function Dashboard() {
                         <span className="label">Total Order</span>
                         <span className="count">300</span>
                       </div>
-                      <ShoppingCartIcon className="rightIconFade" />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <ShoppingCartIcon className="rightIconFade" />
+                      </div>
                     </div>
                     <div className="g2">
                       <div className="leftportion">
@@ -213,7 +468,15 @@ function Dashboard() {
                         <span className="label">Total Transactions</span>
                         <span className="count">300</span>
                       </div>
-                      <CurrencyRupeeIcon className="rightIconFade" />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <CurrencyRupeeIcon className="rightIconFade" />
+                      </div>
                     </div>
                   </div>
                   <div className="left">
@@ -226,7 +489,15 @@ function Dashboard() {
                         <span className="label">Approval Pending</span>
                         <span className="count">300</span>
                       </div>
-                      <AccessTimeIcon className="rightIconFade" />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <AccessTimeIcon className="rightIconFade" />
+                      </div>
                     </div>
                     <div className="g4">
                       <div className="leftportion">
@@ -237,7 +508,15 @@ function Dashboard() {
                         <span className="label">Request Received</span>
                         <span className="count">300</span>
                       </div>
-                      <ChatIcon className="rightIconFade" />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <ChatIcon className="rightIconFade" />
+                      </div>
                     </div>
                   </div>
                 </div>

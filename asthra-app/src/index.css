@@ -73,31 +73,36 @@ body {
   width: 100%;
   height: 100vh;
   display: flex;
-  
+
   .sideBar {
-    width: 300px;
+    width: 300px !important;
     background-color: #ffffff;
-    height: 100vh;
+    max-height: 98svh;
     border-radius: 5px;
-    position: sticky;
+    overflow: auto;
+    position: relative;
+    animation: fadeOutAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
     .closeIcon {
       position: absolute;
       right: 0;
+      z-index: 999;
       color: #b6b6b6;
       padding: 5px;
       .icon {
         border: 1px solid #b6b6b6;
-        border-radius: 2px;
+        border-radius: 3px;
       }
     }
   }
   .sideBarClose {
-    width: 100px;
     background-color: #ffffff;
-    height: 100svh;
-    overflow: hidden;
+    max-height: 98svh;
     border-radius: 5px;
-    position: sticky;
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
   .mainDash {
     padding: 5px;
@@ -137,37 +142,51 @@ body {
         font-weight: 600;
         color: #000000;
       }
-      .gpodrop {
-        color: #ffffff;
-        background-color: #000;
-        border-radius: 10px;
-        height: 50px;
-        width: 110px;
-        margin-right: 15px;
-        font-family: 'poppins';
-        font-weight: 600;
-        .MuiSvgIcon-root {
+      .gpowrapper{
+        .gpodrop {
           color: #ffffff;
-        }
-        .MuiSelect-select {
+          background-color: #000;
+          border-radius: 10px;
+          height: 50px !important;
+          position: relative;
+          width: 110px;
+          margin-right: 10px;
+          justify-content: center;
+          text-align: center;
+          font-family: "poppins";
           font-weight: 600;
-          color: #ffffff;
+          .MuiSvgIcon-root {
+            color: #ffffff;
+          }
+          .MuiSelect-select {
+            font-weight: 600;
+            color: #ffffff;
+          }
         }
+        
+
       }
-      .hosdrop {
+      
+      .hoswrapper {
+        .hosdrop {
         color: #000;
         background-color: transparent;
         border-radius: 10px;
-        border: 2px solid gray;
+        border: 2px solid #00000059;
         z-index: 999;
         height: 50px;
         width: 260px;
         margin-right: 15px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
         font-weight: 400;
-        font-family: 'poppins';
+        font-family: "poppins";
+      }
       }
       .notIcon {
-        border: 0.84px solid black;
+        border: 0.84px solid #00000059;
         border-radius: 10px;
         height: 45px;
         width: 50px;
@@ -188,27 +207,31 @@ body {
 .hover {
   div:hover {
     color: #ea232b;
-    min-height: 50px;
-    border-radius: 10px;
+    min-height: 2.75rem;
+    border-radius: 5px;
+    width: auto;
     background-color: #fbd7d9cf;
-    padding-right: 10px;
-    padding-left: 10px;
+  }
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  .close {
+    background-color: "black";
   }
   .menuItem {
     display: flex;
     align-items: center;
     color: #000;
-    height: 50px;
-    margin-top: 0.5px;
+    height: 2.75rem;
+    margin-top: 1px;
     zoom: 95%;
     padding-right: 10px;
     padding-left: 10px;
 
     .menuIcon {
-      justify-content: center;
       display: flex;
       align-items: center;
-      /* width: 50px; */
       border: 1px solid;
       border-radius: 20%;
       min-height: 25px;
@@ -216,10 +239,11 @@ body {
     .menuName {
       font-family: "Poppins";
       display: flex;
-      justify-content: center;
+      justify-content: start;
       width: 100%;
       align-items: center;
       font-weight: 400;
+      padding-left: 15px;
     }
   }
 }
@@ -280,7 +304,8 @@ body {
             border: 1px solid #d9d9d9;
             zoom: 95%;
             border-radius: 10px;
-            height: 151.48px;
+            height: 160.48px;
+            padding-bottom: 5px;
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -291,6 +316,7 @@ body {
               width: 50%;
               margin-right: 15px;
               margin-left: 10px;
+              margin-bottom: 10px;
               .logoIcon {
                 font-size: 25px;
                 border: 1px solid;
@@ -320,7 +346,7 @@ body {
             }
             .rightIconFade {
               opacity: 0.5;
-              width: 50%;
+              /* width: 50%; */
               /* font-size: 120px; */
               width: 112.31px;
               height: 112.31px;
@@ -345,6 +371,8 @@ body {
             width: 100%;
             display: flex;
             flex-direction: row;
+            height: 160.48px;
+            padding-bottom: 2px;
             width: 100%;
             .leftportion {
               display: flex;
@@ -363,7 +391,7 @@ body {
                 margin-bottom: 10px;
               }
               .label {
-                font-size: 16.67px;
+                font-size: 18.67px;
                 font-weight: 400;
                 font-family: "poppins";
                 color: #000000;
@@ -375,15 +403,13 @@ body {
                 font-weight: 600;
                 font-family: "poppins";
                 color: #000000;
-                padding: 2px;
+                margin-bottom: 20px;
               }
             }
             .rightIconFade {
               opacity: 0.5;
-              width: 50%;
               width: 112.31px;
               height: 112.31px;
-              margin: 25px;
               color: #d9d9d9;
             }
           }
@@ -460,11 +486,12 @@ body {
       }
       .graphicalRep {
         width: 100%;
-        color: #000000;  
-        z-index: 99999;
+        color: #000000;
+        z-index: 2;
         height: 350px;
         border-radius: 10px;
         margin-top: 20px;
+        zoom: 95%;
       }
     }
   }
@@ -481,7 +508,7 @@ body {
       margin-bottom: 10px;
       padding: 5px;
       .label {
-        color: #21A945;
+        color: #21a945;
         display: flex;
         justify-content: end;
         height: 5px;
@@ -504,6 +531,8 @@ body {
       .progress {
         margin-top: 10px;
         width: auto;
+        padding-right: 15px;
+        padding-left: 20px;
         .statusitems {
           display: flex;
           align-items: center;
@@ -531,12 +560,11 @@ body {
             font-weight: 800;
             display: flex;
             justify-content: end;
-            flex-basis:20% ;
+            flex-basis: 20%;
             font-size: 25px;
           }
           .icon {
             flex-basis: 10%;
-            
           }
         }
       }
@@ -607,6 +635,7 @@ body {
       .dueamount {
         border: 1px solid black;
         color: #000;
+        zoom: 95%;
         display: flex;
         justify-content: space-evenly;
         min-height: 53px;
@@ -628,14 +657,25 @@ body {
 
 @keyframes fadeInAnimation {
   0% {
-    opacity: 0;
+    width: 300px;
   }
   100% {
+    width: 100px;
+  }
+}
+@keyframes fadeOutAnimation {
+  0% {
+    width: 100px;
+    opacity: 0.2;
+  }
+  100% {
+    width: 300px;
     opacity: 1;
   }
 }
-.fade {
-  animation: fadeInAnimation ease 2s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+
+/* custom css */
+.css-1toxriw-MuiList-root-MuiMenu-list{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
