@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import Groups2Icon from "@mui/icons-material/Groups2";
 import CategoryIcon from "@mui/icons-material/Category";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -14,7 +14,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import {
   Avatar,
   Badge,
@@ -292,11 +292,11 @@ function Dashboard() {
                             style={{
                               width: "100%",
                               height: "30px",
-                              borderRadius: "5%",
+                              borderRadius: "5px",
                               marginRight: "10px",
                               paddingRight: "0px",
-                            border:'1px solid #EFEEEE',
-                            zoom:'95%'
+                              borderColor: "#EFEEEE",
+                              zoom: "95%",
                             }}
                             placeholder="Search"
                             startAdornment={
@@ -318,7 +318,7 @@ function Dashboard() {
                           marginLeft: "5px",
                           marginBottom: "15px",
                           borderRadius: "10px",
-                          border:"1px solid #EFEEEE"
+                          border: "1px solid #EFEEEE",
                         }}
                       >
                         <MenuItem
@@ -341,7 +341,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <LocalHospitalIcon className="hosIconWrap "/>
+                            <LocalHospitalIcon className="hosIconWrap " />
                           </div>
                           Non GPO
                         </MenuItem>
@@ -421,9 +421,9 @@ function Dashboard() {
             open={openACT}
             onClose={() => setActMenu(null)}
             onClick={() => setActMenu(null)}
-            style={{ display: "flex", width: "auto", borderRadius: "15px"}}
+            style={{ display: "flex", width: "auto", borderRadius: "15px" }}
           >
-            <div style={{ backgroundColor: "white", padding: "10px"}}>
+            <div style={{ backgroundColor: "white", padding: "10px" }}>
               <MenuItem
                 onClick={() => setActMenu(null)}
                 style={{
