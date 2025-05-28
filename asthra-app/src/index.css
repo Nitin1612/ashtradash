@@ -64,6 +64,7 @@ button:focus-visible {
 body {
   overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
+  margin:0 !important;
 }
 ::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
@@ -77,7 +78,7 @@ body {
   .sideBar {
     width: 300px !important;
     background-color: #ffffff;
-    max-height: 98svh;
+    min-height: 100svh;
     border-radius: 5px;
     overflow: auto;
     position: relative;
@@ -100,15 +101,17 @@ body {
   }
   .sideBarClose {
     background-color: #ffffff;
-    max-height: 98svh;
-    border-radius: 5px;
+    max-height: 100svh;
+    border-radius: 0 0 0 5px;
     animation: fadeInAnimation ease 0.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    /* border-right: 0.1px solid #3c2f61; */
   }
   .mainDash {
     padding: 5px;
     margin-left: 10px;
+    margin-right: 10px;
     display: flex;
     flex-direction: column;
     width: 100%;

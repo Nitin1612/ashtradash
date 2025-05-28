@@ -495,7 +495,7 @@ function Dashboard() {
                           style={{ backgroundColor: "#0077B6" }}
                         />
                         <span className="label">Total Transactions</span>
-                        <span className="count">300</span>
+                        <span className="count">250</span>
                       </div>
                       <div
                         style={{
@@ -516,7 +516,7 @@ function Dashboard() {
                           style={{ backgroundColor: "#EA232B" }}
                         />
                         <span className="label">Approval Pending</span>
-                        <span className="count">300</span>
+                        <span className="count">50</span>
                       </div>
                       <div
                         style={{
@@ -535,7 +535,7 @@ function Dashboard() {
                           style={{ backgroundColor: "#FF7308" }}
                         />
                         <span className="label">Request Received</span>
-                        <span className="count">300</span>
+                        <span className="count">20</span>
                       </div>
                       <div
                         style={{
