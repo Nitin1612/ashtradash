@@ -106,6 +106,7 @@ body {
     animation: fadeInAnimation ease 0.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    overflow: auto;
     /* border-right: 0.1px solid #3c2f61; */
   }
   .mainDash {
@@ -218,8 +219,8 @@ body {
     color: #ea232b;
     min-height: 3.25rem;
     border-radius: 5px;
-    width: auto;
     background-color: #fbd7d9cf !important;
+    
   }
   border: 1px solid;
   padding-right: 10px;
@@ -238,8 +239,9 @@ body {
     zoom: 85%;
     padding-right: 10px;
     padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 3px;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 
     .menuIcon {
       min-height: 25px;
@@ -248,6 +250,7 @@ body {
       align-items: center;
       justify-content: center;
       width: 25px;
+      /* margin-top: 20px; */
 
       .menuborder {
         border: 3px solid #cac8c8;
@@ -260,23 +263,21 @@ body {
         cursor: pointer;
         color: #ea232b;
         font-family: "poppins";
-        font-weight: 600;
-        font-size: 11px;
+        font-weight: 400;
+        font-size: 14px;
         opacity: 0;
         text-align: center;
         padding-top: 2px;
-        line-height: 0.5rem;
+        line-height: 0.75rem;
       }
     }
 
     .menuName {
       font-family: "Poppins";
       display: flex;
-      justify-content: start;
       width: 100%;
-      align-items: center;
       font-weight: 400;
-      padding-left: 15px;
+      padding-left: 25px;
     }
   }
 }
@@ -284,9 +285,8 @@ body {
   cursor: pointer;
   .hoverMenu {
     opacity: 1 !important;
-    font-weight: 800 !important;
+    font-weight: 600 !important;
     color: #ea232b;
-    padding-top: 2px;
   }
   .menuItem {
     background-color: #fff;
@@ -653,10 +653,10 @@ body {
             background-color: #fffac9;
             color: #f3941e;
             height: 35.38px;
-            width: 33.38px;
-            border-radius: 50%;
-            padding: 7.5px;
-            zoom: 75%;
+            width: 35.38px;
+            border-radius: 100%;
+            padding: 10px;
+            zoom: 80%;
 
             justify-content: start;
             flex-basis: 10%;
