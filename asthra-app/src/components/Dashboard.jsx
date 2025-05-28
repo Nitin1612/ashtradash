@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import InventoryIcon from "@mui/icons-material/Inventory";
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import Groups2Icon from "@mui/icons-material/Groups2";
 import CategoryIcon from "@mui/icons-material/Category";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -73,7 +73,7 @@ function Dashboard() {
     { icon: <HomeIcon />, name: "Dashboard" },
     { icon: <ShoppingCartIcon />, name: "Order Summary" },
     { icon: <QueryStatsIcon />, name: "Purchase Analysis" },
-    { icon: <InventoryIcon />, name: "Brand" },
+    { icon: <FormatBoldIcon />, name: "Brand" },
     { icon: <Groups2Icon />, name: "Vendor" },
     { icon: <CategoryIcon />, name: "Category" },
     { icon: <CreditCardIcon />, name: "Transaction" },
