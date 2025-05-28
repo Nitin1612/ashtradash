@@ -13,34 +13,28 @@ import WidgetsIcon from "@mui/icons-material/Widgets";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import {
   Avatar,
   Badge,
   badgeClasses,
-  Box,
   Button,
   Divider,
   FormControl,
   IconButton,
   InputAdornment,
-  InputBase,
-  InputLabel,
+  LinearProgress,
+  linearProgressClasses,
   ListItemIcon,
   Menu,
-  NativeSelect,
   OutlinedInput,
-  Slider,
   styled,
 } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { BarChart } from "@mui/x-charts/BarChart";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -63,14 +57,19 @@ const CartBadge = styled(Badge)`
 function CustomLabels() {
   return <StackOrderDemo />;
 }
-
+const BorderLinearProgress = styled(LinearProgress)(() => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: "#A79F9FAD",
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: "#21A945",
+  },
+}));
 function Dashboard() {
-  // const [age, setAge] = React.useState(10);
-
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
-
+  
   const menuItems = [
     { icon: <HomeIcon />, name: "Dashboard" },
     { icon: <ShoppingCartIcon />, name: "Order Summary" },
@@ -84,26 +83,11 @@ function Dashboard() {
     { icon: <LogoutIcon />, name: "Logout" },
   ];
 
-  const marks = [
-    {
-      value: 100,
-      label: "100%",
-    },
-  ];
-
-  function valuetext(value) {
-    return `${value}%`;
-  }
-
   const [close, setClose] = React.useState(true);
-  //   const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  //   null
-  //   },
-  // }));
 
   const sideMenuTabs = (name, icon) => {
     return (
-      <div className="hover">
+      <div className="white hover hovEff">
         <div
           className={`menuItem ${!close && "close"}`}
           style={{
@@ -112,7 +96,14 @@ function Dashboard() {
             justifyContent: "center",
           }}
         >
-          <span className="menuIcon">{icon}</span>
+          <span className="menuIcon  ">
+            <span className="menuborder">{icon}</span>{" "}
+            {!close && (
+              <span className="hoverMenu">
+                {name == "Dashboard" ? "Home" : name}
+              </span>
+            )}{" "}
+          </span>
           {close && <span className="menuName">{name}</span>}
         </div>
       </div>
@@ -235,7 +226,11 @@ function Dashboard() {
                   <Button
                     className="hosdrop"
                     onClick={(e) => setAnchorE2(e.currentTarget)}
-                    startIcon={<SearchIcon />}
+                    startIcon={
+                      <SearchIcon
+                        style={{ paddingRight: "10px", paddingLeft: "10px" }}
+                      />
+                    }
                   >
                     Kaveri Hospital
                     <KeyboardArrowDownIcon
@@ -328,7 +323,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <HomeIcon />
+                            <LocalHospitalIcon />
                           </div>
                           Non GPO
                         </MenuItem>
@@ -352,7 +347,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <HomeIcon />
+                            <LocalHospitalIcon />
                           </div>
                           Non GPO
                         </MenuItem>
@@ -376,7 +371,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <HomeIcon />
+                            <LocalHospitalIcon />
                           </div>
                           Non GPO
                         </MenuItem>
@@ -408,17 +403,33 @@ function Dashboard() {
             open={openACT}
             onClose={() => setActMenu(null)}
             onClick={() => setActMenu(null)}
-            style={{ display: "flex", width: "auto",borderRadius:'15px' }}
+            style={{ display: "flex", width: "auto", borderRadius: "15px" }}
           >
-            <div style={{ backgroundColor: "white",padding:'10px'}}>
-              <MenuItem onClick={() => setActMenu(null)} style={{fontFamily:'poppins',fontWeight:'400',fontSize:'15px'}}>
+            <div style={{ backgroundColor: "white", padding: "10px" }}>
+              <MenuItem
+                onClick={() => setActMenu(null)}
+                style={{
+                  fontFamily: "poppins",
+                  fontWeight: "400",
+                  fontSize: "15px",
+                  zoom: "80%",
+                }}
+              >
                 <ListItemIcon>
-                  <HomeIcon fontSize="small" />
+                  <LocalHospitalIcon fontSize="small" />
                 </ListItemIcon>
                 Kaveri Hospital
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => setActMenu(null)} style={{fontFamily:'poppins',fontWeight:'400',fontSize:'15px'}}>
+              <MenuItem
+                onClick={() => setActMenu(null)}
+                style={{
+                  fontFamily: "poppins",
+                  fontWeight: "400",
+                  fontSize: "15px",
+                  zoom: "80%",
+                }}
+              >
                 <ListItemIcon>
                   <LogoutIcon fontSize="small" />
                 </ListItemIcon>
@@ -440,10 +451,10 @@ function Dashboard() {
                 </div>
                 <div className="graph">
                   <div className="right">
-                    <div className="g1">
+                    <div className="g1 order">
                       <div className="leftportion">
                         <AddShoppingCartIcon
-                          className="logoIcon"
+                          className="logoIcon order-icon"
                           style={{ backgroundColor: "#FF7308" }}
                         />
                         <span className="label">Total Order</span>
@@ -459,10 +470,10 @@ function Dashboard() {
                         <ShoppingCartIcon className="rightIconFade" />
                       </div>
                     </div>
-                    <div className="g2">
+                    <div className="g2 transac">
                       <div className="leftportion">
                         <MultipleStopIcon
-                          className="logoIcon"
+                          className="logoIcon order-icon"
                           style={{ backgroundColor: "#0077B6" }}
                         />
                         <span className="label">Total Transactions</span>
@@ -480,10 +491,10 @@ function Dashboard() {
                     </div>
                   </div>
                   <div className="left">
-                    <div className="g3">
+                    <div className="g3 pending">
                       <div className="leftportion">
                         <PendingActionsIcon
-                          className="logoIcon"
+                          className="logoIcon order-icon"
                           style={{ backgroundColor: "#EA232B" }}
                         />
                         <span className="label">Approval Pending</span>
@@ -499,10 +510,10 @@ function Dashboard() {
                         <AccessTimeIcon className="rightIconFade" />
                       </div>
                     </div>
-                    <div className="g4">
+                    <div className="g4 request">
                       <div className="leftportion">
                         <ChatIcon
-                          className="logoIcon"
+                          className="logoIcon order-icon"
                           style={{ backgroundColor: "#FF7308" }}
                         />
                         <span className="label">Request Received</span>
@@ -543,7 +554,7 @@ function Dashboard() {
                         className="dot"
                         style={{ backgroundColor: "#FBD7D9" }}
                       ></span>
-                      Total Order Received
+                      Orders Approval Pending
                     </span>
                     <div className="sortBy">
                       Sort by Month
@@ -561,7 +572,7 @@ function Dashboard() {
                 {/* active header */}
                 <span className="label">
                   <span
-                    className="dot"
+                    className='activedot'
                     style={{ backgroundColor: "green" }}
                   ></span>
                   Active
@@ -599,16 +610,49 @@ function Dashboard() {
                   <div className="credit-card-content">
                     <div className="max-credit">
                       <p>Maximum Credit</p>
-                      <h2>₹30,000</h2>
+                      <h2>
+                        <span
+                          style={{
+                            fontFamily: "fantasy",
+                            fontSize: "15px",
+                            paddingRight: "2px",
+                          }}
+                        >
+                          ₹
+                        </span>
+                        30,000
+                      </h2>
                     </div>
                     <div className="amounts">
                       <div className="used-amount">
                         <p>Used Amount</p>
-                        <h3>₹20,000</h3>
+                        <h3>
+                          <span
+                            style={{
+                              fontFamily: "fantasy",
+                              fontSize: "14px",
+                              paddingRight: "2px",
+                            }}
+                          >
+                            ₹
+                          </span>
+                          20,000
+                        </h3>
                       </div>
                       <div className="balance-credits">
                         <p>Balance credits</p>
-                        <h3>₹10,000</h3>
+                        <h3>
+                          <span
+                            style={{
+                              fontFamily: "fantasy",
+                              fontSize: "14px",
+                              paddingRight: "2px",
+                            }}
+                          >
+                            ₹
+                          </span>{" "}
+                          10,000
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -619,28 +663,49 @@ function Dashboard() {
                       backgroundColor: "black",
                       color: "white",
                       borderRadius: "50%",
+                      height: "35.38px",
+                      width: "35.38px",
+                      padding: "7.5px",
+                      zoom: "65%",
                     }}
                   />
                   <span style={{ fontWeight: "400" }}>Due Amount</span>
                   <span style={{ fontSize: "larger", fontWeight: "bolder" }}>
-                    ₹40,000
+                    <span
+                      style={{
+                        fontFamily: "fantasy",
+                        fontSize: "14px",
+                        paddingRight: "2px",
+                      }}
+                    >
+                      ₹
+                    </span>{" "}
+                    40,000
                   </span>
                 </div>
                 <div className="totalamount" style={{ padding: "10px" }}>
-                  <span style={{ fontSize: "16.77px" }}>Total Amount</span>
-                  <span style={{ fontSize: "36.92px", fontWeight: "800" }}>
+                  <span style={{ fontSize: "16.77px" }}>Total Balance</span>
+                  <span style={{ fontSize: "36.92px", fontWeight: "600" }}>
                     1,00,000
                   </span>
 
-                  <Slider
-                    aria-label="Always visible"
-                    defaultValue={80}
-                    getAriaValueText={valuetext}
-                    step={10}
-                    marks={marks}
-                    valueLabelDisplay="on"
-                    style={{ color: "#21A945" }}
+                  <BorderLinearProgress
+                    variant="determinate"
+                    value={50}
+                    style={{ marginTop: "15px" }}
                   />
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "5px",
+                      fontFamily: "poppins",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <div>70%</div>
+                    <div>30%</div>
+                  </div>
                 </div>
               </div>
             </div>
