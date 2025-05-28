@@ -14,7 +14,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import {
   Avatar,
   Badge,
@@ -69,11 +69,10 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
   },
 }));
 function Dashboard() {
-  
   const menuItems = [
     { icon: <HomeIcon />, name: "Dashboard" },
     { icon: <ShoppingCartIcon />, name: "Order Summary" },
-    { icon: <QueryStatsIcon />, name: "Purchase Summary" },
+    { icon: <QueryStatsIcon />, name: "Purchase Analysis" },
     { icon: <InventoryIcon />, name: "Brand" },
     { icon: <Groups2Icon />, name: "Vendor" },
     { icon: <CategoryIcon />, name: "Category" },
@@ -201,6 +200,14 @@ function Dashboard() {
                           fontWeight: 400,
                           fontSize: "13px",
                         }}
+                        onMouseEnter={(e) => {
+                          e.target.style.background = "white";
+                          e.target.style.color = "black";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.background = "black";
+                          e.target.style.color = "white";
+                        }}
                         onClick={() => setAnchorEl(null)}
                       >
                         GPO
@@ -211,6 +218,14 @@ function Dashboard() {
                           fontFamily: "poppins",
                           fontWeight: 400,
                           fontSize: "13px",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.background = "white";
+                          e.target.style.color = "black";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.background = "black";
+                          e.target.style.color = "white";
                         }}
                         onClick={() => setAnchorEl(null)}
                       >
@@ -280,11 +295,13 @@ function Dashboard() {
                               borderRadius: "5%",
                               marginRight: "10px",
                               paddingRight: "0px",
+                            border:'1px solid #EFEEEE',
+                            zoom:'95%'
                             }}
                             placeholder="Search"
                             startAdornment={
                               <InputAdornment position="start">
-                                <SearchIcon />
+                                <SearchIcon fontSize="small" />
                               </InputAdornment>
                             }
                           />
@@ -301,6 +318,7 @@ function Dashboard() {
                           marginLeft: "5px",
                           marginBottom: "15px",
                           borderRadius: "10px",
+                          border:"1px solid #EFEEEE"
                         }}
                       >
                         <MenuItem
@@ -323,7 +341,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <LocalHospitalIcon />
+                            <LocalHospitalIcon className="hosIconWrap "/>
                           </div>
                           Non GPO
                         </MenuItem>
@@ -347,7 +365,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <LocalHospitalIcon />
+                            <LocalHospitalIcon className="hosIconWrap" />
                           </div>
                           Non GPO
                         </MenuItem>
@@ -371,7 +389,7 @@ function Dashboard() {
                               marginRight: "10px",
                             }}
                           >
-                            <LocalHospitalIcon />
+                            <LocalHospitalIcon className="hosIconWrap " />
                           </div>
                           Non GPO
                         </MenuItem>
@@ -382,7 +400,7 @@ function Dashboard() {
               </>
 
               <IconButton className="notIcon">
-                <NotificationsIcon />
+                <NotificationsActiveIcon />
                 <CartBadge
                   badgeContent={2}
                   color="success"
@@ -403,9 +421,9 @@ function Dashboard() {
             open={openACT}
             onClose={() => setActMenu(null)}
             onClick={() => setActMenu(null)}
-            style={{ display: "flex", width: "auto", borderRadius: "15px" }}
+            style={{ display: "flex", width: "auto", borderRadius: "15px"}}
           >
-            <div style={{ backgroundColor: "white", padding: "10px" }}>
+            <div style={{ backgroundColor: "white", padding: "10px"}}>
               <MenuItem
                 onClick={() => setActMenu(null)}
                 style={{
@@ -572,7 +590,7 @@ function Dashboard() {
                 {/* active header */}
                 <span className="label">
                   <span
-                    className='activedot'
+                    className="activedot"
                     style={{ backgroundColor: "green" }}
                   ></span>
                   Active
@@ -691,7 +709,7 @@ function Dashboard() {
 
                   <BorderLinearProgress
                     variant="determinate"
-                    value={50}
+                    value={70}
                     style={{ marginTop: "15px" }}
                   />
                   <div
