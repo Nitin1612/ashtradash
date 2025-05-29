@@ -553,7 +553,7 @@ function Dashboard() {
               </div>
               <div className="bottom">
                 <div className="header">
-                  <div style={{ width: "20%" }} className="heading">
+                  <div style={{ width: "10%" }} className="heading">
                     {" "}
                     Analytics
                   </div>
