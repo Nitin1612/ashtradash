@@ -51,8 +51,9 @@ import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 export default function MobileDashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorE2, setAnchorE2] = React.useState(null);
-  const [, setActMenu] = React.useState(null);
+  const [actMenu, setActMenu] = React.useState(null);
   const openGPO = Boolean(anchorEl);
+  const openACT = Boolean(actMenu)
   const openHOS = Boolean(anchorE2);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -72,6 +73,8 @@ export default function MobileDashboard() {
   ];
 
   const [close, setClose] = React.useState(false);
+  const [ active,setActive] = React.useState('1')
+  console.log(active)
 
   const sideMenuTabs = (name, icon) => {
     return (
@@ -249,6 +252,45 @@ export default function MobileDashboard() {
                   N
                 </Avatar>
               </div>
+              <Menu
+                          anchorEl={actMenu}
+                          open={openACT}
+                          onClose={() => setActMenu(null)}
+                          onClick={() => setActMenu(null)}
+                          style={{ display: "flex", width: "auto", borderRadius: "15px" }}
+                        >
+                          <div style={{ backgroundColor: "white", padding: "10px" }}>
+                            <MenuItem
+                              onClick={() => setActMenu(null)}
+                              style={{
+                                fontFamily: "poppins",
+                                fontWeight: "400",
+                                fontSize: "15px",
+                                zoom: "80%",
+                              }}
+                            >
+                              <ListItemIcon>
+                                <LocalHospitalIcon fontSize="small" />
+                              </ListItemIcon>
+                              Kaveri Hospital
+                            </MenuItem>
+                            <Divider />
+                            <MenuItem
+                              onClick={() => setActMenu(null)}
+                              style={{
+                                fontFamily: "poppins",
+                                fontWeight: "400",
+                                fontSize: "15px",
+                                zoom: "80%",
+                              }}
+                            >
+                              <ListItemIcon>
+                                <LogoutIcon fontSize="small" />
+                              </ListItemIcon>
+                              Logout
+                            </MenuItem>
+                          </div>
+                        </Menu>
             </div>
             <div className="subHeader">
               <div className="ViewHeadlineIcon" onClick={() => setClose(true)}>
@@ -425,10 +467,10 @@ export default function MobileDashboard() {
                 <DatePicker />
               </LocalizationProvider>
             </div>
-            <div className="g1 order">
+            <div className={`${active == '1' && 'order'} g1`} onClick={()=>setActive('1')}>
               <div className="leftportion">
                 <AddShoppingCartIcon
-                  className="logoIcon order-icon"
+                  className={`${active == '1' ? "logoIcon order-icon" : "logoIcon"}`}
                   style={{ backgroundColor: "#FF7308" }}
                 />
                 <span className="label">Total Order</span>
@@ -444,10 +486,10 @@ export default function MobileDashboard() {
                 <ShoppingCartIcon className="rightIconFade" />
               </div>
             </div>
-            <div className="g2 transac">
+            <div className={`${active == '2' && 'transac'} g2`} onClick={()=>setActive('2')}>
               <div className="leftportion">
                 <MultipleStopIcon
-                  className="logoIcon order-icon"
+                  className={`${active == '2' ? "logoIcon order-icon" : "logoIcon"}`}
                   style={{ backgroundColor: "#0077B6" }}
                 />
                 <span className="label">Total Transactions</span>
@@ -463,10 +505,10 @@ export default function MobileDashboard() {
                 <CurrencyRupeeIcon className="rightIconFade" />
               </div>
             </div>
-            <div className="g3 pending">
+            <div className={`${active == '3' && 'pending'} g3`}  onClick={()=>setActive('3')}>
               <div className="leftportion">
                 <PendingActionsIcon
-                  className="logoIcon order-icon"
+                  className={`${active == '3' ? "logoIcon order-icon " : "logoIcon"}`}
                   style={{ backgroundColor: "#EA232B" }}
                 />
                 <span className="label">Approval Pending</span>
@@ -482,10 +524,10 @@ export default function MobileDashboard() {
                 <AccessTimeIcon className="rightIconFade" />
               </div>
             </div>
-            <div className="g4 request">
+            <div className={`${active == '4' && 'request'} g4`} onClick={()=>setActive('4')}>
               <div className="leftportion">
                 <ChatIcon
-                  className="logoIcon order-icon"
+                  className={`${active == '4' ? "logoIcon order-icon" : "logoIcon"}`}
                   style={{ backgroundColor: "#FF7308" }}
                 />
                 <span className="label">Request Received</span>
@@ -504,7 +546,7 @@ export default function MobileDashboard() {
           </div>
           <div className="analytics">
             <div className="header">
-              <div style={{ width: "20%" }} className="heading">
+              <div style={{ width: "50%" }} className="heading">
                 {" "}
                 Analytics
               </div>
@@ -637,7 +679,7 @@ export default function MobileDashboard() {
                   zoom: "65%",
                 }}
               />
-              <span style={{ fontWeight: "400" }}>Due Amount</span>
+              <span style={{ fontWeight: "400",fontSize:'20px' }}>Due Amount</span>
               <span style={{ fontSize: "larger", fontWeight: "bolder" }}>
                 <span
                   style={{
