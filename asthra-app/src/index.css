@@ -537,6 +537,7 @@ body {
         min-height: 50px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         .heading {
           font-family: "poppins";
           font-size: 20.29px;

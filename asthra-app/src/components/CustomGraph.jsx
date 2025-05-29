@@ -75,25 +75,25 @@ import { BarChart } from "@mui/x-charts/BarChart";
 //   { label: 'Bike', data: biking, stack: 'total' },
 // ];
 
-export default function StackOrderDemo({ ismobile }) {
+export default function StackOrderDemo({ ismobile,data }) {
   //   const [stackOrder, setStackOrder] = React.useState('none');
 
   //   const modifiedSeries = [{ ...series[0], stackOrder }, ...series.slice(1)];
+
+  let modified = data.map((e,ind)=> (ind<=6) ? e.ordered_day : undefined)
+  let pending = data.map((e,ind) => (ind <=6) ? e.order_approval_pending : undefined)
+  let received = data.map((e,ind)=> (ind <=6) ? e.total_order_received : undefined)
+
+  modified = modified.filter( Boolean );
+  pending = pending.filter(Boolean);
+  received = received.filter(Boolean);
   const chartProp = ismobile
     ? {
         height : 300,
         xAxis: [{ min: 0, max: 750 }],
         yAxis: [
           {
-            data: [
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-            ],
+            data: modified,
             scaleType: "band",
             id: "x-axis",
             width:75
@@ -128,14 +128,14 @@ export default function StackOrderDemo({ ismobile }) {
       series={[
         {
           type: "bar",
-          data: [100, 200, 20, 300, 500, 450, 125],
-          stack: "Sunday",
+          data: pending,
+          stack: "day",
           color: "#EA232B",
         },
         {
           type: "bar",
-          data: [45, 333, 343, 560, 321, 344, 600],
-          stack: "Sunday",
+          data: received,
+          stack: "day",
           color: "#FBD7D9",
         },
       ]}

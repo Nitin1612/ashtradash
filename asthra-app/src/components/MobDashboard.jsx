@@ -48,7 +48,7 @@ import MultipleStopIcon from "@mui/icons-material/MultipleStop";
 import StackOrderDemo from "./CustomGraph";
 
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
-export default function MobileDashboard() {
+export default function MobileDashboard({data}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorE2, setAnchorE2] = React.useState(null);
   const [actMenu, setActMenu] = React.useState(null);
@@ -58,6 +58,7 @@ export default function MobileDashboard() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
 
   const menuItems = [
     { icon: <HomeIcon />, name: "Dashboard" },
@@ -101,7 +102,7 @@ export default function MobileDashboard() {
   };
 
   function CustomLabels() {
-    return <StackOrderDemo ismobile={true} />;
+    return <StackOrderDemo ismobile={true} data ={data.graphData}/>;
   }
   const CartBadge = styled(Badge)`
     & .${badgeClasses.badge} {
@@ -131,7 +132,7 @@ export default function MobileDashboard() {
             <div className={"sideBar"} onClick={() => setClose(!close)}>
               <div
                 className="closeIcon"
-                onClick={() => [console.log(close), setClose(!close)]}
+                onClick={() => setClose(!close)}
               >
                 <CloseIcon className="icon" />
               </div>
@@ -473,7 +474,7 @@ export default function MobileDashboard() {
                   style={{ backgroundColor: "#FF7308" }}
                 />
                 <span className="label">Total Order</span>
-                <span className="count">300</span>
+                <span className="count">{data?.analyticsData?.totalorders || 0}</span>
               </div>
               <div
                 style={{
@@ -492,7 +493,7 @@ export default function MobileDashboard() {
                   style={{ backgroundColor: "#0077B6" }}
                 />
                 <span className="label">Total Transactions</span>
-                <span className="count">250</span>
+                <span className="count">{data?.analyticsData?.transactions || 0}</span>
               </div>
               <div
                 style={{
@@ -511,7 +512,7 @@ export default function MobileDashboard() {
                   style={{ backgroundColor: "#EA232B" }}
                 />
                 <span className="label">Approval Pending</span>
-                <span className="count">50</span>
+                <span className="count">{data.analyticsData.approval || 0}</span>
               </div>
               <div
                 style={{
@@ -530,7 +531,7 @@ export default function MobileDashboard() {
                   style={{ backgroundColor: "#FF7308" }}
                 />
                 <span className="label">Request Received</span>
-                <span className="count">20</span>
+                <span className="count">{data.analyticsData.request || 0}</span>
               </div>
               <div
                 style={{
@@ -591,25 +592,25 @@ export default function MobileDashboard() {
               <div className="statusitems">
                 <LocalHospitalIcon className="goldIcon" />
                 <span className="title">Order Placed</span>
-                <span className="bold">48</span>
+                <span className="bold">{data?.orderData?.order_placed || 0}</span>
                 <ArrowForwardIosIcon fontSize="small" className="icon" />
               </div>
               <div className="statusitems">
                 <FactCheckIcon className="goldIcon" />
                 <span className="title">Approved</span>
-                <span className="bold">12</span>
+                <span className="bold">{data?.orderData?.approved || 0}</span>
                 <ArrowForwardIosIcon fontSize="small" className="icon" />
               </div>
               <div className="statusitems">
                 <LocalShippingIcon className="goldIcon" />
                 <span className="title">Shipped</span>
-                <span className="bold">28</span>
+                <span className="bold">{data.orderData.shipped || 0}</span>
                 <ArrowForwardIosIcon fontSize="small" className="icon" />
               </div>
               <div className="statusitems">
                 <CreditCardIcon className="goldIcon" />
                 <span className="title">Delivered</span>
-                <span className="bold">8</span>
+                <span className="bold">{data.orderData.delivered}</span>
                 <ArrowForwardIosIcon fontSize="small" className="icon" />
               </div>
             </div>
