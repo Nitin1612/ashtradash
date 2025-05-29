@@ -802,7 +802,7 @@ body {
 .activedot {
   display: inline-block;
   width: 35px;
-  z-index: 999;
+  z-index: 9;
   zoom: 35%;
   height: 35px;
   border-radius: 50%;
@@ -886,6 +886,7 @@ body {
     min-height: 125px;
     position: fixed;
     z-index: 99;
+    width: 100%;
   }
   .header {
     padding-left: 5px;
@@ -1160,6 +1161,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 30px;
     .credit-card {
       width: 100%;
       height: 175px;
