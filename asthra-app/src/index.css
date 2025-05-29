@@ -1155,15 +1155,16 @@ body {
     border: 1px solid #d9d9d9;
     border-radius: 10px;
     background-color: #ffffff;
-    width: 85% !important;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 96% !important;
+    /* padding-left: 20px;
+    padding-right: 20px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-bottom: 30px;
     .credit-card {
-      width: 100%;
+      width: 96%;
       height: 175px;
       margin-top: 10px;
       border-radius: 15px;
@@ -1222,9 +1223,9 @@ body {
     }
     .dueamount {
       border: 1px solid black;
+      width: 85%;
       color: #000;
       zoom: 95%;
-      width: 90%;
       padding-right: 15px;
       padding-left: 15px;
       display: flex;
@@ -1236,6 +1237,7 @@ body {
       margin-top: 10px;
     }
     .totalamount {
+      width: 90%;
       color: #000000;
       font-family: "poppins";
       display: flex;
