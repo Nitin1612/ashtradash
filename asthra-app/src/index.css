@@ -220,7 +220,6 @@ body {
     min-height: 3.25rem;
     border-radius: 5px;
     background-color: #fbd7d9cf !important;
-    
   }
   border: 1px solid;
   padding-right: 10px;
@@ -842,4 +841,473 @@ body {
   border-radius: 50%;
   color: white;
   background-color: #efeeee;
+}
+
+.rootMobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  height: 100vh;
+  padding-bottom: 10px;
+  .sidemenu {
+    position: absolute;
+    z-index: 99999 !important;
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    .sideBar {
+    background-color: #ffffff;
+    min-width: 100%;
+    min-height: 100svh;
+    border-radius: 5px;
+    overflow: auto;
+    position: relative;
+    animation: fadeOutAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    .closeIcon {
+      position: absolute;
+      right: 0;
+      z-index: 999;
+      color: #b6b6b6;
+      padding-top: 12px;
+      padding-right: 10px;
+      zoom: 80%;
+      .icon {
+        border: 1px solid #b6b6b6;
+        border-radius: 5px;
+      }
+    }
+  }
+  }
+  .navbar {
+    background-color: #fff;
+    min-height: 125px;
+    position: fixed;
+    z-index: 99;
+  }
+  .header {
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      zoom: 95%;
+    }
+    .name {
+      font-family: "poppins";
+      font-size: 16px;
+      font-weight: 600;
+      color: #000;
+    }
+    .endDiv {
+      display: flex;
+      align-items: center;
+      .gpowrapper {
+        .gpodrop {
+          color: #ffffff;
+          background-color: #000;
+          border-radius: 10px;
+          height: 31px !important;
+          position: relative;
+          width: 69px;
+          margin-right: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: "poppins";
+          font-size: 10px !important;
+          font-weight: 400 !important;
+          .MuiSvgIcon-root {
+            color: #ffffff;
+          }
+          .MuiSelect-select {
+            font-weight: 400;
+            color: #ffffff;
+          }
+          :hover {
+            cursor: pointer;
+            background-color: white;
+          }
+        }
+      }
+
+      .notIcon {
+        border: 0.84px solid #00000059;
+        border-radius: 10px;
+        height: 31px;
+        width: 38px;
+        margin-right: 15px;
+      }
+      .avatar {
+        width: 34px;
+        height: 34px;
+      }
+    }
+  }
+  .subHeader {
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .ViewHeadlineIcon {
+      width: 18px;
+      height: 16px;
+      color: #000;
+      padding-left: 7px;
+      padding-bottom: 10px;
+    }
+    .hoswrapper {
+      .hosdrop {
+        color: #000;
+        background-color: transparent;
+        border-radius: 10px;
+        border: 2px solid #00000059;
+        z-index: 999;
+        height: 34px;
+        width: 311px;
+        margin-right: 15px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        font-weight: 400;
+        font-family: "poppins";
+      }
+    }
+  }
+  .stats {
+    border: 1px solid;
+    width: 96%;
+    border-radius: 10px;
+    margin-top: 135px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+
+    .sortBy {
+      min-height: 13px;
+      display: flex;
+      align-items: center;
+      font-family: "poppins";
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #000000;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      justify-content: end !important;
+
+      .MuiFormControl-root {
+        width: 8rem;
+        height: 25px;
+        border-radius: 8.51px;
+        font-size: small;
+        padding-left: 10px;
+      }
+      .MuiPickersInputBase-root {
+        width: 8rem;
+        height: 25px;
+        border-radius: 8.51px;
+        font-size: small;
+      }
+    }
+    .g1,
+    .g2,
+    .g3,
+    .g4 {
+      border: 1px solid #d9d9d9;
+      zoom: 95%;
+      border-radius: 10px;
+      height: 115.48px;
+      padding-bottom: 5px;
+      width: 95%;
+      display: flex;
+      flex-direction: row;
+      margin-left: 10px;
+      .leftportion {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-right: 15px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        .logoIcon {
+          font-size: 25px;
+          border: 1px solid;
+          min-height: 27px;
+          width: 27px;
+          border-radius: 10px;
+          padding: 5px;
+          margin-top: 5px;
+          margin-bottom: 10px;
+        }
+        .label {
+          font-size: 13px;
+          line-height: 23.08px;
+          font-weight: 400;
+          font-family: "poppins";
+          color: #000000;
+        }
+        .count {
+          font-size: 25.61px;
+          line-height: 30.08px;
+          font-weight: 600;
+          font-family: "poppins";
+          color: #000000;
+        }
+      }
+      .rightIconFade {
+        opacity: 0.5;
+        /* width: 50%; */
+        /* font-size: 120px; */
+        width: 93px;
+        height: 93px;
+        margin: 25px;
+        color: #d9d9d9;
+      }
+    }
+    .g1,
+    .g2,
+    .g3,
+    .g4 {
+      margin-bottom: 10px;
+    }
+  }
+  .progressWrapper {
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    background-color: #ffffff;
+    height: 308px;
+    width: 96%;
+    margin-top: 10px;
+    padding-bottom: 10px;
+
+    margin-bottom: 10px;
+    .label {
+      color: #21a945;
+      display: flex;
+      justify-content: end;
+      height: 5px;
+      align-items: center;
+      font-weight: 600;
+      display: flex;
+      padding: 10px;
+      margin-bottom: 5px;
+      margin-top: 10px;
+
+      .dot {
+        font-size: 1px;
+        border-radius: 25px;
+        padding: 7px;
+        width: auto;
+        margin-right: 5px;
+      }
+    }
+    .progress {
+      margin-top: 10px;
+      width: 98%;
+      .statusitems {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-family: "poppins";
+        color: #000000;
+        font-weight: 600;
+        .goldIcon {
+          background-color: #fffac9;
+          color: #f3941e;
+          height: 35.38px;
+          width: 35.38px;
+          border-radius: 100%;
+          padding: 10px;
+          zoom: 80%;
+
+          justify-content: start;
+          flex-basis: 10%;
+        }
+        .title {
+          display: flex;
+          flex-basis: 50%;
+          padding-left: 25px;
+          font-weight: 400;
+        }
+        .bold {
+          font-weight: 600;
+          display: flex;
+          justify-content: end;
+          flex-basis: 20%;
+          font-size: 22px;
+        }
+        .icon {
+          flex-basis: 10%;
+        }
+      }
+    }
+  }
+  .bottom {
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 85% !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .credit-card {
+      width: 100%;
+      height: 175px;
+      margin-top: 10px;
+      border-radius: 15px;
+      background: linear-gradient(105deg, #841418 5%, #ea232b 60%, #f3941e 30%);
+      color: white;
+      font-family: "poppins";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .credit-card-content {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 90%;
+    }
+
+    .max-credit p {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .max-credit h2 {
+      margin: 5px 0 10px;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .amounts {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .used-amount p,
+    .balance-credits p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .used-amount h3,
+    .balance-credits h3 {
+      margin: 4px 0 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .used-amount {
+      text-align: left;
+    }
+
+    .balance-credits {
+      text-align: right;
+    }
+    .dueamount {
+      border: 1px solid black;
+      color: #000;
+      zoom: 95%;
+      width: 90%;
+      padding-right: 15px;
+      padding-left: 15px;
+      display: flex;
+      justify-content: space-evenly;
+      min-height: 53px;
+      font-family: "poppins";
+      align-items: center;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .totalamount {
+      color: #000000;
+      font-family: "poppins";
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+  }
+  .analytics {
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 10px;
+    width: 96%;
+    .header {
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .heading {
+        font-family: "poppins";
+        font-size: 20.29px;
+        font-weight: 600;
+        margin-left: 16px;
+        color: #000000;
+      }
+      .restheaders {
+        width: 100%;
+        padding: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        .label {
+          color: #1a1a1a;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          font-weight: 600;
+          padding-left: 15px;
+
+          .dot {
+            font-size: 1px;
+            border-radius: 25px;
+            padding: 7px;
+            width: auto;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+    .sortBy {
+      font-family: "poppins";
+      font-size: 12.18px;
+      font-weight: 600;
+      color: #000000;
+      padding: 12px;
+      align-items: center;
+      display: flex;
+      margin-left: 12px;
+      zoom: 90%;
+
+      .MuiFormControl-root {
+        width: 130px;
+        height: 36px;
+        border-radius: 8.51px;
+        font-size: small;
+        padding-left: 10px;
+      }
+      .MuiPickersInputBase-root {
+        width: 130px;
+        height: 36px;
+        border-radius: 8.51px;
+        font-size: small;
+      }
+    }
+  }
 }

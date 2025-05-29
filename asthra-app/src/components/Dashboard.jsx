@@ -68,6 +68,7 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
     backgroundColor: "#21A945",
   },
 }));
+
 function Dashboard() {
   const menuItems = [
     { icon: <HomeIcon />, name: "Dashboard" },

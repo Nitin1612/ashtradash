@@ -75,29 +75,15 @@ import { BarChart } from "@mui/x-charts/BarChart";
 //   { label: 'Bike', data: biking, stack: 'total' },
 // ];
 
-export default function StackOrderDemo() {
+export default function StackOrderDemo({ ismobile }) {
   //   const [stackOrder, setStackOrder] = React.useState('none');
 
   //   const modifiedSeries = [{ ...series[0], stackOrder }, ...series.slice(1)];
-  return (
-      <BarChart
-      className="graphicalRep"
-        series={[
-          {
-            type: "bar",
-            data: [100, 200, 20, 300, 500, 450, 125],
-            stack: "Sunday",
-            color: "#EA232B",
-          },
-          {
-            type: "bar",
-            data: [45, 333, 343, 560, 321, 344, 600],
-            stack: "Sunday",
-            color: "#FBD7D9",
-          },
-        ]}
-        yAxis={[{ min: 0, max: 750 }]}
-        xAxis={[
+  const chartProp = ismobile
+    ? {
+        height : 300,
+        xAxis: [{ min: 0, max: 750 }],
+        yAxis: [
           {
             data: [
               "Sunday",
@@ -111,7 +97,47 @@ export default function StackOrderDemo() {
             scaleType: "band",
             id: "x-axis",
           },
-        ]}
-      />
+        ],
+      }
+    : {
+        yAxis: [{ min: 0, max: 750 }],
+        xAxis: [
+          {
+            data: [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+            ],
+            scaleType: "band",
+            id: "x-axis",
+          },
+        ],
+      };
+  return (
+    <BarChart
+    {...chartProp}
+      layout={`${ismobile ? "horizontal" : "vertical"}`}
+      className="graphicalRep"
+
+      // layout="horizontal"
+      series={[
+        {
+          type: "bar",
+          data: [100, 200, 20, 300, 500, 450, 125],
+          stack: "Sunday",
+          color: "#EA232B",
+        },
+        {
+          type: "bar",
+          data: [45, 333, 343, 560, 321, 344, 600],
+          stack: "Sunday",
+          color: "#FBD7D9",
+        },
+      ]}
+    />
   );
 }
