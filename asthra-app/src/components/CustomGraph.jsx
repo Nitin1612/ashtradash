@@ -96,6 +96,7 @@ export default function StackOrderDemo({ ismobile }) {
             ],
             scaleType: "band",
             id: "x-axis",
+            width:75
           },
         ],
       }
