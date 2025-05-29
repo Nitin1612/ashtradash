@@ -74,7 +74,6 @@ export default function MobileDashboard() {
 
   const [close, setClose] = React.useState(false);
   const [ active,setActive] = React.useState('1')
-  console.log(active)
 
   const sideMenuTabs = (name, icon) => {
     return (
